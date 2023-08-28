@@ -12,7 +12,7 @@ namespace DealershipManager.Middleware
             }
             catch (Exception ex)
             {
-                HandleException(context, ex);
+                await HandleException(context, ex);
             }
         }
 
