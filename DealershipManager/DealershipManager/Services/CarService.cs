@@ -33,7 +33,7 @@ namespace DealershipManager.Services
                 Category = carDto.Category,
                 Model = carDto.Model,
                 Price = carDto.Price,
-                ProductionYear = carDto.ProductionYear,
+                Year = carDto.ProductionYear,
                 IsSold = false
             };
 
@@ -71,7 +71,7 @@ namespace DealershipManager.Services
                 Category = carDto.Category,
                 Model = carDto.Model,
                 Price = carDto.Price,
-                ProductionYear = carDto.ProductionYear,
+                Year = carDto.ProductionYear,
             };
 
             _carRepository.Update(car);

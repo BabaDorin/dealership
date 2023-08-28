@@ -1,6 +1,8 @@
+using DealershipManager.Data;
 using DealershipManager.Middleware;
 using DealershipManager.Repositories;
 using DealershipManager.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,12 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ExceptionHandlingMiddleware>();
 
 builder.Services.AddScoped<ICarService, CarService>();
-builder.Services.AddScoped<ICarRepository, InMemoryCarRepository>();
+//builder.Services.AddScoped<ICarRepository, InMemoryCarRepository>();
+builder.Services.AddScoped<ICarRepository, SqlCarRepository>();
 builder.Services.AddScoped<ICarValidator, CarValidator>();
 
 builder.Services.AddScoped<IClientRepository, InMemoryClientRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IClientValidator, ClientValidator>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<ISaleRepository, InMemorySaleRepository>();
