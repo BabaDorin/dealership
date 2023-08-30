@@ -1,0 +1,13 @@
+﻿- Install SQL Server
+- Install SQL Server Management Studio
+- Install EntityFrameworkCore NuGet package
+- Install EntityFrameworkCore.SqlServer NuGet package
+- Install EntityFrameowkCore.Tools
+- Add connection string to appsettings.json
+	- Data Source=localhost;Initial Catalog=dealership;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;User Instance=False;
+- Add ApplicationDbContext (abstractization over SQL Database)
+- Register ApplicationDbContext and read connection string from appsettings.json
+- From Package Manager Console (Tools -> NuGet Package Manager -> Package manager console)
+	Add-Migration "Initial Migration"
+	Update-Migration
+- Implement SQL Repositories (Inject ApplicationDbContext and use DbSets for data manipulation).
