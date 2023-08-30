@@ -1,4 +1,7 @@
-﻿namespace DealershipManager.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace DealershipManager.Models
 {
     public class Car
     {
