@@ -50,7 +50,7 @@ namespace DealershipManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("DealershipManager.Models.Client", b =>
@@ -68,7 +68,7 @@ namespace DealershipManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("DealershipManager.Models.Sale", b =>
@@ -95,7 +95,7 @@ namespace DealershipManager.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("DealershipManager.Models.Sale", b =>

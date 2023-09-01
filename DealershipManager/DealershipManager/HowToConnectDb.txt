@@ -1,6 +1,7 @@
 ﻿- Install SQL Server
 - Install SQL Server Management Studio
 - Install EntityFrameworkCore NuGet package
+	(Other options: Dapper, Microsoft.Data.SqlClient)
 - Install EntityFrameworkCore.SqlServer NuGet package
 - Install EntityFrameowkCore.Tools
 - Add connection string to appsettings.json
