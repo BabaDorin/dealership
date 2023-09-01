@@ -1,5 +1,6 @@
 ﻿using DealershipManager.Data;
 using DealershipManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DealershipManager.Repositories
 {
@@ -18,9 +19,13 @@ namespace DealershipManager.Repositories
             _applicationDbContext.SaveChanges();
         }
 
-        public List<Sale> GetAll()
+        public List<Sale> GetAll(DateTime startDate, DateTime endDate)
         {
-            return _applicationDbContext.Sales.ToList();
+            return _applicationDbContext.Sales
+                .Where(s => s.Date >= startDate && s.Date <= endDate)
+                .Include(s => s.Car)
+                .Include(s => s.Client)
+                .ToList();
         }
     }
 }

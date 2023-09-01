@@ -50,9 +50,9 @@ namespace DealershipManager.Services
             return _carRepository.Get(id);
         }
 
-        public List<Car> GetAll()
+        public List<Car> GetAll(bool isSold)
         {
-            return _carRepository.GetAll();
+            return _carRepository.GetAll(isSold);
         }
 
         public void Update(Guid carId, UpdateCarDto carDto)
