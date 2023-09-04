@@ -1,4 +1,5 @@
 ﻿using DealershipManager.Dtos;
+using DealershipManager.Exceptions;
 using DealershipManager.Models;
 using DealershipManager.Repositories;
 
@@ -23,7 +24,7 @@ namespace DealershipManager.Services
 
             if (!isValid)
             {
-                throw new ArgumentException("Invalid car info. Could not add the car.");
+                throw new ValidationException("Invalid car info. Could not add the car.");
             }
 
             var car = new Car
@@ -33,7 +34,7 @@ namespace DealershipManager.Services
                 Category = carDto.Category,
                 Model = carDto.Model,
                 Price = carDto.Price,
-                Year = carDto.ProductionYear,
+                ProductionYear = carDto.ProductionYear,
                 IsSold = false
             };
 
@@ -47,7 +48,14 @@ namespace DealershipManager.Services
 
         public Car? Get(Guid id)
         {
-            return _carRepository.Get(id);
+            var car = _carRepository.Get(id);
+
+            if (car is null)
+            {
+                throw new NotFoundException(id);
+            }
+
+            return car;
         }
 
         public List<Car> GetAll(bool isSold)
@@ -61,7 +69,7 @@ namespace DealershipManager.Services
 
             if (!isValid)
             {
-                throw new ArgumentException("Invalid car info. Could not add the car");
+                throw new ValidationException("Invalid car info. Could not add the car.");
             }
 
             var car = new Car
@@ -71,7 +79,7 @@ namespace DealershipManager.Services
                 Category = carDto.Category,
                 Model = carDto.Model,
                 Price = carDto.Price,
-                Year = carDto.ProductionYear,
+                ProductionYear = carDto.ProductionYear,
             };
 
             _carRepository.Update(car);
