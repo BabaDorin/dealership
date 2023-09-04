@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using DealershipManager.Exceptions;
+using DealershipManager.Models;
+using Newtonsoft.Json;
 
 namespace DealershipManager.Middleware
 {
@@ -18,24 +20,27 @@ namespace DealershipManager.Middleware
 
         private static async Task HandleException(HttpContext context, Exception ex)
         {
-            context.Response.StatusCode = 500; // INTERNAL SERVER ERROR
+            var exceptionType = ex.GetType();
+
             context.Response.ContentType = "application/json";
 
-            var error = new
-            {
-                Message = "An error occurred while processing your request.",
-                ExceptionMessage = ex.Message,
-            };
+            var errorMessage = new ErrorMessage();
+            errorMessage.Message = ex.Message;
 
-            // Serializare: Din obiect in Json
-            /*
+            errorMessage.ErrorCode = 500;
+
+            if (exceptionType == typeof(NotFoundException))
             {
-                "message": "An error occurred while processing your request.",
-                "exceptionMessage": "Attepted to devide by 0"
+                errorMessage.ErrorCode = 404;
+            } 
+            else if (exceptionType == typeof(ValidationException))
+            {
+                errorMessage.ErrorCode = 400;
             }
-             */
 
-            var jsonResponse = JsonConvert.SerializeObject(error);
+            context.Response.StatusCode = errorMessage.ErrorCode;
+
+            var jsonResponse = JsonConvert.SerializeObject(errorMessage);
             await context.Response.WriteAsync(jsonResponse);
         }
     }

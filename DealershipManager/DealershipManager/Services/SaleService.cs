@@ -1,4 +1,5 @@
 ﻿using DealershipManager.Dtos;
+using DealershipManager.Exceptions;
 using DealershipManager.Models;
 using DealershipManager.Repositories;
 using System.Transactions;
@@ -50,7 +51,7 @@ namespace DealershipManager.Services
             }
             else
             {
-                throw new ArgumentException("Invalid sale data. Could not register the sale.");
+                throw new ValidationException("Invalid sale data. Could not register the sale.");
             }
         }
 

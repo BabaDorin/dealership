@@ -47,7 +47,7 @@ namespace DealershipManager.Repositories
 
             if (productionYear != 0)
             {
-                filter = filter.Where(c => c.Year == productionYear);
+                filter = filter.Where(c => c.ProductionYear == productionYear);
             }
 
             var cars = filter.ToList();
@@ -65,7 +65,7 @@ namespace DealershipManager.Repositories
                 carToUpdate.Model = car.Model;
                 carToUpdate.Category = car.Category;
                 carToUpdate.Price = car.Price;
-                carToUpdate.Year = car.Year;
+                carToUpdate.ProductionYear = car.ProductionYear;
             }
         }
     }

@@ -20,7 +20,7 @@ namespace DealershipManager.Controllers
         [Route("cars")]
         public IActionResult Add(AddCarDto car)
         {
-            _carService.Add(car);
+            var result = _carService.Add(car);
 
             return Ok();
         }

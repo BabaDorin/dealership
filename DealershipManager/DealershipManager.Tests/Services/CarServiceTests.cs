@@ -61,7 +61,7 @@ namespace DealershipManager.Tests.Services
                     && c.Brand == addCarDto.Brand
                     && c.Model == addCarDto.Model
                     && c.Price == addCarDto.Price
-                    && c.Year == addCarDto.ProductionYear
+                    && c.ProductionYear == addCarDto.ProductionYear
                     && c.IsSold == false)),
                 Times.Once);
         }
