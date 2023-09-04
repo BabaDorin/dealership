@@ -5,8 +5,8 @@ namespace DealershipManager.Services
 {
     public interface ISaleService
     {
-        void Add(AddSaleDto saleDto);
+        Result Add(AddSaleDto saleDto);
 
-        List<Sale> GetAll(DateTime startDate, DateTime endDate);
+        GenericResult<List<Sale>> GetAll(DateTime startDate, DateTime endDate);
     }
 }

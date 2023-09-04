@@ -17,13 +17,13 @@ namespace DealershipManager.Services
             _clientRepository = clientRepository;
         }
 
-        public void Add(AddClientDto clientDto)
+        public Result Add(AddClientDto clientDto)
         {
             var isValid = _clientValidator.IsValidAddClientDto(clientDto);
 
             if (!isValid)
             {
-                throw new ArgumentException("Invalid client info. Could not add client.");
+                return Result.Fail("Invalid client info. Could not add client.");
             }
 
             var client = new Client
@@ -34,11 +34,13 @@ namespace DealershipManager.Services
             };
 
             _clientRepository.Add(client);
+
+            return Result.Success();
         }
 
-        public List<Client> GetAll()
+        public GenericResult<List<Client>> GetAll()
         {
-            return _clientRepository.GetAll();
+            return GenericResult<List<Client>>.Success(_clientRepository.GetAll());
         }
     }
 }
