@@ -6,6 +6,6 @@ namespace DealershipManager.Repositories
     {
         void Add(Sale sale);
 
-        List<Sale> GetAll();
+        List<Sale> GetAll(DateTime startDate, DateTime endDate);
     }
 }

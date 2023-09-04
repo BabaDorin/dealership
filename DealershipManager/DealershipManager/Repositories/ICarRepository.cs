@@ -8,7 +8,7 @@ namespace DealershipManager.Repositories
 
         Car? Get(Guid id);
 
-        List<Car> GetAll();
+        List<Car> GetAll(bool isSold);
 
         List<Car> GetByFilter(string model, string brand, int productionYear);
 

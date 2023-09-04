@@ -11,9 +11,11 @@ namespace DealershipManager.Repositories
             _sales.Add(sale);
         }
 
-        public List<Sale> GetAll()
+        public List<Sale> GetAll(DateTime startDate, DateTime endDate)
         {
-            return _sales;
+            return _sales
+                .Where(s => s.Date >= startDate && s.Date <= endDate)
+                .ToList();
         }
     }
 }

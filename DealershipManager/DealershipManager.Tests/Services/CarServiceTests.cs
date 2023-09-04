@@ -30,8 +30,8 @@ namespace DealershipManager.Tests.Services
             var act = () => sut.Add(addCarDto);
 
             // Assert
-            carValidatorMock.Verify(m => m.IsValidAddCarDto(It.IsAny<AddCarDto>()), Times.Once);
             Assert.Throws<ArgumentException>(act);
+            carValidatorMock.Verify(m => m.IsValidAddCarDto(It.IsAny<AddCarDto>()), Times.Once);
             carRepositoryMock.Verify(m => m.Add(It.IsAny<Car>()), Times.Never);
         }
 
