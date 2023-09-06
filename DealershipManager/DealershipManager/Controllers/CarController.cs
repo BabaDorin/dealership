@@ -1,5 +1,4 @@
 ﻿using DealershipManager.Dtos;
-using DealershipManager.Models;
 using DealershipManager.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +19,9 @@ namespace DealershipManager.Controllers
         [Route("cars")]
         public IActionResult Add(AddCarDto car)
         {
-            _carService.Add(car);
+            var result = _carService.Add(car);
 
-            return Ok();
+            return result.IsSuccess ? Ok() : BadRequest(result.ErrorMessage);
         }
 
         // Get all cars: GET /cars
@@ -40,9 +39,11 @@ namespace DealershipManager.Controllers
         [Route("cars/{carId}")]
         public IActionResult GetById(Guid carId)
         {
-            var result = _carService.Get(carId);
+            var operationResult = _carService.Get(carId);
 
-            return result is null ? NotFound() : Ok(result);
+            return operationResult.IsSuccess 
+                ? Ok(operationResult.Result) 
+                : NotFound(operationResult.ErrorMessage);
         }
 
         // Update car: PUT /cars/{id}
